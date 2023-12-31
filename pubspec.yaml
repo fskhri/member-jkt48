@@ -64,6 +64,10 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/images/member/
+    - assets/images/payment/
+    - assets/images/background.svg
+    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
