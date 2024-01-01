@@ -25,12 +25,6 @@ class _SplashPageState extends State<SplashPage>
       duration: Duration(seconds: 3),
     );
 
-    // Tween untuk mengatur animasi skala dari 0.5 ke 1.0
-    final Animation<double> scaleAnimation = Tween<double>(
-      begin: 0.5,
-      end: 1.0,
-    ).animate(_controller);
-
     // Memulai animasi
     _controller.forward();
 
