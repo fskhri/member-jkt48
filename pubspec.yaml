@@ -37,7 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
   google_fonts: ^6.1.0
-  flutter_map_marker_popup: ^6.1.2
+  font_awesome_flutter: ^10.6.0
+  # modal_bottom_sheet: ^2.1.2
+  # flutter_map_marker_popup: ^6.1.2
+  # modal_bottom_sheet: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +70,6 @@ flutter:
     - assets/images/
     - assets/images/member/
     - assets/images/payment/
-    - assets/images/background.svg
     
   #   - images/a_dot_ham.jpeg
 

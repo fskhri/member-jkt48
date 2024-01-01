@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../common/color.dart';
+import '../../widget/BottomSheet_Widget.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget _buildLoginButton(double screenWidth) {
     return ElevatedButton(
       onPressed: () {
-        // Add login button functionality
+        _showBottomSheet(context);
       },
       style: ElevatedButton.styleFrom(
         primary: AppColors.pink[500],
@@ -187,6 +188,14 @@ class _LoadingPageState extends State<LoadingPage> {
           ],
         ),
       ],
+    );
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => CustomBottomSheet(),
     );
   }
 }
