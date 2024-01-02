@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../common/color.dart';
-import '../../widget/BottomSheet_Widget.dart';
+import '../../widget/BottomSheet_log_in_Widget.dart';
+import '../../widget/BottomSheet_sign_up_Widget.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -13,8 +13,11 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> {
+  double screenHeight = 0.0;
+
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 55.0),
@@ -23,9 +26,9 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the main content of the loading page
   Widget _buildContent() {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -38,27 +41,9 @@ class _LoadingPageState extends State<LoadingPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/logoload.png",
-                      width: screenWidth * 0.5,
-                    ),
+                    _centerLogo(),
                     SizedBox(height: screenHeight * 0.02),
-                    Text(
-                      'Welcome to JKT48 PM!',
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: screenWidth * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.01),
-                    Text(
-                      'Here, you can receive messages from all JKT48 members directly. Let\'s start connecting with your favorite idols now!',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: screenWidth * 0.03,
-                        color: Colors.black,
-                      ),
-                    ),
+                    _buildHeaderText(screenWidth),
                     SizedBox(height: 36),
                     _buildLoginButton(screenWidth),
                     SizedBox(height: 12),
@@ -75,6 +60,7 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the header with the logo and language button
   Widget _buildHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,14 +71,25 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the JKT48 logo
   Widget _buildLogo() {
     return Image.asset(
-      'assets/images/logoload.png',
-      height: 55,
-      width: 55,
+      'assets/images/minilogo.png',
+      height: 100,
+      width: 100,
     );
   }
 
+  // Build the central logo
+  Widget _centerLogo() {
+    return Image.asset(
+      'assets/images/logoload.png',
+      height: 163,
+      width: 311,
+    );
+  }
+
+  // Build the language selection button
   Widget _buildLanguageButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -127,11 +124,34 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the header text with a welcome message
+  Widget _buildHeaderText(double screenWidth) {
+    return Column(
+      children: [
+        Text(
+          'Welcome to JKT48 PM!',
+          style: GoogleFonts.plusJakartaSans(
+            fontSize: screenWidth * 0.05,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: screenHeight * 0.01),
+        Text(
+          'Here, you can receive messages from all JKT48 members directly. Let\'s start connecting with your favorite idols now!',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.plusJakartaSans(
+            fontSize: screenWidth * 0.03,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Build the login button
   Widget _buildLoginButton(double screenWidth) {
     return ElevatedButton(
-      onPressed: () {
-        _showBottomSheet(context);
-      },
+      onPressed: () => _showBottomSheet(context, BottomSheetLoginWidget()),
       style: ElevatedButton.styleFrom(
         primary: AppColors.pink[500],
         onPrimary: AppColors.neutral[0],
@@ -144,11 +164,10 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the sign-up button
   Widget _buildSignUpButton(double screenWidth) {
     return ElevatedButton(
-      onPressed: () {
-        // Add sign-up button functionality
-      },
+      onPressed: () => _showBottomSheet(context, BottomSheetSignUpWidget()),
       style: ElevatedButton.styleFrom(
         primary: AppColors.neutral[0],
         onPrimary: AppColors.pink[500],
@@ -162,6 +181,7 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
+  // Build the text for terms and privacy information
   Widget _buildTermsAndPrivacyText() {
     return Column(
       children: [
@@ -191,11 +211,12 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
+  // Show the bottom sheet (login or sign-up)
+  void _showBottomSheet(BuildContext context, Widget bottomSheet) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => CustomBottomSheet(),
+      builder: (context) => bottomSheet,
     );
   }
 }

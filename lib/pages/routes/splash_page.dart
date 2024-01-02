@@ -12,23 +12,23 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
-  // Controller untuk mengontrol animasi
+  // Controller to control the animation
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    // Inisialisasi AnimationController dengan durasi 3 detik
+    // Initialize AnimationController with a duration of 3 seconds
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 3),
     );
 
-    // Memulai animasi
+    // Start the animation
     _controller.forward();
 
-    // Timer untuk berpindah ke halaman berikutnya setelah 4 detik
+    // Timer to navigate to the next page after 4 seconds
     Timer(
       Duration(seconds: 4),
       () {
@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage>
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Background menggunakan gambar SVG
+          // Background using SVG image
           SvgPicture.asset(
             'assets/images/background.svg',
             fit: BoxFit.cover,
@@ -57,7 +57,7 @@ class _SplashPageState extends State<SplashPage>
               turns: _controller,
               child: ScaleTransition(
                 scale: _controller,
-                // Logo menggunakan gambar PNG
+                // Logo using PNG image
                 child: Image.asset(
                   'assets/images/logo.png',
                   width: MediaQuery.of(context).size.width * 0.6,
@@ -73,7 +73,7 @@ class _SplashPageState extends State<SplashPage>
 
   @override
   void dispose() {
-    // Melepaskan sumber daya saat widget dihapus
+    // Release resources when the widget is disposed
     _controller.dispose();
     super.dispose();
   }
