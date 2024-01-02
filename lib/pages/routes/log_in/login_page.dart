@@ -104,6 +104,17 @@ class _LogInPageState extends State<LogInPage> {
                     ),
                     suffixIcon: _buildClearButton(emailController),
                   ),
+                  validator: (value) {
+                    // Check if the email is not empty and is a valid email format
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    } else if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        .hasMatch(value)) {
+                      return 'Invalid email format';
+                    }
+                    // Return null if the email is valid
+                    return null;
+                  },
                   textAlign: TextAlign.left,
                 ),
                 Spacer(),

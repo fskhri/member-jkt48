@@ -87,6 +87,17 @@ class _SignUpFillPasswordPageState extends State<SignUpFillPasswordPage> {
                       ),
                       suffixIcon: _buildTogglePasswordVisibilityButton(),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      // Add your own password strength validation logic if needed
+                      // Example: Check if the password has a minimum length
+                      if (value.length < 8) {
+                        return 'Password must be at least 8 characters long';
+                      }
+                      return null; // Return null if the input is valid
+                    },
                     textAlign: TextAlign.left,
                   ),
                   _buildPasswordAlert(),
@@ -150,7 +161,9 @@ class _SignUpFillPasswordPageState extends State<SignUpFillPasswordPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignUpConfPasswordPage(),
+                      builder: (context) => SignUpConfPasswordPage(
+                        passwordController: passwordController,
+                      ),
                     ),
                   );
                 }

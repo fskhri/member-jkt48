@@ -48,6 +48,16 @@ class _SignUpBirthDatePageState extends State<SignUpBirthDatePage> {
     if (value == null || value.isEmpty) {
       return 'Birth date is required';
     }
+
+    // Additional validation can be done here as needed
+    // Example: Ensure that the birth date does not exceed the current date
+    DateTime currentDate = DateTime.now();
+    DateTime selectedDate = DateFormat('dd-MM-yyyy').parse(value);
+
+    if (selectedDate.isAfter(currentDate)) {
+      return 'Invalid birth date';
+    }
+
     return null;
   }
 

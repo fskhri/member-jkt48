@@ -4,7 +4,10 @@ import 'package:pm_member/utils/color.dart';
 import 'package:pm_member/pages/routes/sign_up/signup_nickname_page.dart';
 
 class SignUpConfPasswordPage extends StatefulWidget {
-  const SignUpConfPasswordPage({Key? key}) : super(key: key);
+  final TextEditingController passwordController;
+
+  const SignUpConfPasswordPage({Key? key, required this.passwordController})
+      : super(key: key);
 
   @override
   State<SignUpConfPasswordPage> createState() => _SignUpConfPasswordPageState();
@@ -12,6 +15,8 @@ class SignUpConfPasswordPage extends StatefulWidget {
 
 class _SignUpConfPasswordPageState extends State<SignUpConfPasswordPage> {
   TextEditingController confirmPasswordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   bool isContinueButtonEnabled = false;
   bool isPasswordHidden = true;
@@ -57,52 +62,64 @@ class _SignUpConfPasswordPageState extends State<SignUpConfPasswordPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 55.0),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: constraints.maxHeight * 0.05),
-                Text(
-                  'Confirm your password',
-                  textAlign: TextAlign.left,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: constraints.maxWidth * 0.05,
-                    fontWeight: FontWeight.bold,
+        child: Form(
+          key: _formKey,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: constraints.maxHeight * 0.05),
+                  Text(
+                    'Confirm your password',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: constraints.maxWidth * 0.05,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(height: constraints.maxHeight * 0.01),
-                Text(
-                  'Are you sure about the password you\'ve chosen? Please re-enter it to confirm!',
-                  textAlign: TextAlign.left,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: constraints.maxWidth * 0.035,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                SizedBox(height: constraints.maxHeight * 0.05),
-                _buildPasswordField(constraints),
-                SizedBox(height: constraints.maxHeight * 0.01),
-                TextFormField(
-                  controller: confirmPasswordController,
-                  onChanged: (_) => _updateContinueButtonState(),
-                  obscureText: isPasswordHidden,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    hintStyle: GoogleFonts.plusJakartaSans(
+                  SizedBox(height: constraints.maxHeight * 0.01),
+                  Text(
+                    'Are you sure about the password you\'ve chosen? Please re-enter it to confirm!',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: constraints.maxWidth * 0.035,
                       fontWeight: FontWeight.normal,
                     ),
-                    suffixIcon: _buildTogglePasswordVisibilityButton(),
                   ),
-                  textAlign: TextAlign.left,
-                ),
-                Spacer(),
-                _buildContinueButton(constraints.maxWidth),
-              ],
-            );
-          },
+                  SizedBox(height: constraints.maxHeight * 0.05),
+                  _buildPasswordField(constraints),
+                  SizedBox(height: constraints.maxHeight * 0.01),
+                  TextFormField(
+                    controller: confirmPasswordController,
+                    onChanged: (_) => _updateContinueButtonState(),
+                    obscureText: isPasswordHidden,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your password',
+                      hintStyle: GoogleFonts.plusJakartaSans(
+                        fontSize: constraints.maxWidth * 0.035,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      suffixIcon: _buildTogglePasswordVisibilityButton(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (value != widget.passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                    textAlign: TextAlign.left,
+                  ),
+                  Spacer(),
+                  _buildContinueButton(constraints.maxWidth),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -146,7 +163,10 @@ class _SignUpConfPasswordPageState extends State<SignUpConfPasswordPage> {
       child: ElevatedButton(
         onPressed: isContinueButtonEnabled
             ? () {
-                _navigateToNickPage();
+                // Perform password confirmation logic here
+                if (_formKey.currentState?.validate() ?? false) {
+                  _navigateToNickPage();
+                }
               }
             : null,
         style: ElevatedButton.styleFrom(

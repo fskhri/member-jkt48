@@ -105,6 +105,13 @@ class _SignUpNickPageState extends State<SignUpNickPage> {
                     suffixIcon: _buildClearButton(nicknameController),
                   ),
                   textAlign: TextAlign.left,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your nickname';
+                    }
+                    // Add additional validation if needed
+                    return null;
+                  },
                 ),
                 Spacer(),
                 _buildContinueButton(constraints.maxWidth),
