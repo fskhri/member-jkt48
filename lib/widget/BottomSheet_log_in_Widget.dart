@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../common/color.dart';
+import '../utils/color.dart';
 import '../pages/routes/log_in/login_page.dart';
 
 class BottomSheetLoginWidget extends StatelessWidget {

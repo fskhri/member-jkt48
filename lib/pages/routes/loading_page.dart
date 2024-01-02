@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../common/color.dart';
+import '../../utils/color.dart';
 import '../../widget/BottomSheet_log_in_Widget.dart';
 import '../../widget/BottomSheet_sign_up_Widget.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pm_member/common/color.dart';
+import 'package:pm_member/utils/color.dart';
 import 'package:pm_member/pages/routes/sign_up/signup_conf_password_page.dart';
 
 class SignUpFillPasswordPage extends StatefulWidget {

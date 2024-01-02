@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:pm_member/common/color.dart';
+import 'package:pm_member/utils/color.dart';
 import '../../homepage.dart';
 
 class SignUpBirthDatePage extends StatefulWidget {
