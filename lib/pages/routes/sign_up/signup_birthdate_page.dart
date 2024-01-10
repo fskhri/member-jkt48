@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:pm_member/utils/color.dart';
-import '../../homepage.dart';
+import '../../../widgets/bottom_navigation.dart';
 
 class SignUpBirthDatePage extends StatefulWidget {
   const SignUpBirthDatePage({Key? key}) : super(key: key);
@@ -69,12 +69,12 @@ class _SignUpBirthDatePageState extends State<SignUpBirthDatePage> {
       child: ElevatedButton(
         onPressed: isSignUpButtonEnabled
             ? () {
-                // Navigate to the homepage when the button is pressed
+                // Navigate to the BottomNav when the button is pressed
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        HomePage(), // Replace with the actual name of your homepage class
+                        BottomNav(), // Replace with the actual name of your BottomNav class
                   ),
                 );
               }

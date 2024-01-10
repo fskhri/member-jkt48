@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../utils/color.dart';
-import '../../widget/BottomSheet_log_in_Widget.dart';
-import '../../widget/BottomSheet_sign_up_Widget.dart';
+import '../../widgets/BottomSheet_log_in_Widget.dart';
+import '../../widgets/BottomSheet_sign_up_Widget.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);

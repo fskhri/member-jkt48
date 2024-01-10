@@ -16,7 +16,7 @@ class BottomSheetLoginWidget extends StatelessWidget {
         if (text == 'Use email / username') {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LogInPage()),
+            MaterialPageRoute(builder: (context) => LoginPage()),
           );
         }
       },

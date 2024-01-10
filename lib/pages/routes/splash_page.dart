@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage>
     // Initialize AnimationController with a duration of 3 seconds
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 4),
     );
 
     // Start the animation
@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage>
 
     // Timer to navigate to the next page after 4 seconds
     Timer(
-      Duration(seconds: 4),
+      Duration(seconds: 5),
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(

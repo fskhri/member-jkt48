@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pm_member/utils/color.dart';
-import '../../homepage.dart';
+
+import '../../../widgets/bottom_navigation.dart';
 
 class LoginFillPasswordPage extends StatefulWidget {
   const LoginFillPasswordPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginFillPasswordPage> createState() =>
-      _LoginFillPasswordPageState();
+  State<LoginFillPasswordPage> createState() => _LoginFillPasswordPageState();
 }
 
 class _LoginFillPasswordPageState extends State<LoginFillPasswordPage> {
@@ -24,12 +24,12 @@ class _LoginFillPasswordPageState extends State<LoginFillPasswordPage> {
     });
   }
 
-  // Navigate to the homepage
-  void _navigateToHomePage() {
+  // Navigate to the BottomNav
+  void _navigateToBottomNav() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => BottomNav(),
       ),
     );
   }
@@ -149,8 +149,8 @@ class _LoginFillPasswordPageState extends State<LoginFillPasswordPage> {
             ? () {
                 // Perform login logic here
 
-                // If login is successful, navigate to the homepage
-                _navigateToHomePage();
+                // If login is successful, navigate to the BottomNav
+                _navigateToBottomNav();
               }
             : null,
         style: ElevatedButton.styleFrom(
