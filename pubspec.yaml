@@ -73,6 +73,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/member/
     - assets/images/member/
     - assets/images/payment/
     
