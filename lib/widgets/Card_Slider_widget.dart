@@ -1,74 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class Member {
-  final String imagePath;
+class CarouselSliderWidget extends StatefulWidget {
+  const CarouselSliderWidget({Key? key}) : super(key: key);
 
-  Member({required this.imagePath});
+  @override
+  State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
 }
 
-class MyCardSlider extends StatelessWidget {
-  final List<Member> memberList = [
-    Member(imagePath: 'marshalenathea1.png'),
+class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
+  List<String> imageList = [
+    'assets/images/member/celline1.jpeg',
+    'assets/images/member/desynata1.jpeg',
+    'assets/images/member/graceocta1.jpeg',
+    'assets/images/member/greesella1.jpeg',
+    'assets/images/member/indah1.jpeg',
+    'assets/images/member/marsha1.jpeg',
+    'assets/images/member/michelle1.jpeg'
+  ];
+
+  List<String> imageDescriptions = [
+    'Description for Image 1',
+    'Description for Image 2',
+    'Description for Image 3', // Add more descriptions as needed
+    'Description for Image 4',
+    'Description for Image 5',
+    'Description for Image 6',
+    'Description for Image 7',
   ];
 
   @override
   Widget build(BuildContext context) {
-    final CarouselController _controller = CarouselController();
-
-    return CarouselSlider(
-      carouselController: _controller,
+    return CarouselSlider.builder(
+      itemCount: imageList.length,
       options: CarouselOptions(
-        height: 150.0,
-        enlargeCenterPage: false,
-        autoPlay: true,
-        aspectRatio: 16 / 9,
-        viewportFraction: 0.4,
+        height: 200.0,
         autoPlayCurve: Curves.fastOutSlowIn,
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        scrollDirection: Axis.horizontal,
-        scrollPhysics: BouncingScrollPhysics(),
+        enableInfiniteScroll: true,
+        viewportFraction: 0.3,
       ),
-      items: memberList.map((member) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              width: 120.0,
-              height: 150.0,
-              margin: EdgeInsets.symmetric(horizontal: 12.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Stack(
-                  children: [
-                    Image.asset(
-                      'assets/images/member/${member.imagePath}',
-                      fit: BoxFit.cover,
-                    ),
-                    Positioned.fill(
-                      child: FractionallySizedBox(
-                        alignment: Alignment.bottomCenter,
-                        heightFactor: 0.24,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.6),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+      itemBuilder: (BuildContext context, int index, int realIndex) {
+        return Container(
+          height: 150,
+          width: 130,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                ),
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  imageDescriptions[index],
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            );
-          },
+            ],
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: AssetImage(
+                imageList[index],
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
         );
-      }).toList(),
+      },
     );
   }
 }

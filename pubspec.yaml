@@ -1,3 +1,4 @@
+
 name: pm_member
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
@@ -42,6 +43,12 @@ dependencies:
   
   flutter_pw_validator: ^1.6.0
   carousel_slider: ^4.2.1
+  card_swiper : ^3.0.0
+  
+# flutter_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/images/logo.png"
 
   # modal_bottom_sheet: ^2.1.2
   # flutter_map_marker_popup: ^6.1.2
@@ -73,11 +80,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/member/
     - assets/images/member/
-    - assets/images/payment/
-    
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
