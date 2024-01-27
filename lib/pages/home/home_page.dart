@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'Jhon doe',
+                          text: 'John Doe',
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -48,49 +48,49 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 25),
               Row(
                 children: [
-                  Container(
-                    width: 370,
-                    height: 40,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: '“Kathrina”',
-                              hintStyle: TextStyle(
-                                color: AppColors.pink[500],
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: '“Kathrina”',
+                                hintStyle: TextStyle(
+                                  color: AppColors.pink[500],
+                                ),
+                                filled: true,
+                                fillColor: AppColors.primary[800],
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10.0,
+                                  horizontal: 12.0,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: AppColors.pink[500],
+                                ),
                               ),
-                              filled: true,
-                              fillColor: AppColors.primary[800],
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: BorderSide.none,
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 10.0,
-                                horizontal: 12.0,
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Search',
+                              style: GoogleFonts.plusJakartaSans(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
                                 color: AppColors.pink[500],
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 8),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Search',
-                            style: GoogleFonts.plusJakartaSans(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: AppColors.pink[500],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -114,6 +114,7 @@ class HomePage extends StatelessWidget {
                   color: AppColors.primary[400],
                 ),
               ),
+              // Uncomment the CardSwiper widget when ready
               // CardSwiper(
               //   itemBuilder: (BuildContext context, int index) {
               //     return Container();
